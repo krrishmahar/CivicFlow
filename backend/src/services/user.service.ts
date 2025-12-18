@@ -1,5 +1,5 @@
 import type { FlowContext } from 'motia'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import crypto from 'node:crypto'
 import type { User, UserRole } from '../auth/types'
 import { BaseError } from '../errors/base.error'

@@ -1,5 +1,5 @@
 import type { FlowContext } from 'motia'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import { BaseError } from '../errors/base.error'
 import type { User } from '../auth/types'
 import { findUserByEmail } from './user.service'
