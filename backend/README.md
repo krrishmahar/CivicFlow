@@ -9,20 +9,81 @@ Motia is an open-source, unified backend framework that eliminates runtime fragm
 ## Quick Start
 
 ```bash
-# Start the development server
+# Start the development server (backend on :3001 by default)
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-This starts the Motia runtime and the **Workbench** - a powerful UI for developing and debugging your workflows. By default, it's available at [`http://localhost:3000`](http://localhost:3000).
+This starts the Motia runtime and the **Workbench** - a powerful UI for developing and debugging your workflows.
+
+### Environment variables
+
+Create a `.env` file in the project root (do not commit this file) with at least:
 
 ```bash
-# Test your first endpoint
-curl http://localhost:3000/hello
+APP_NAME="CivicFlow Backend"
+GREETING_PREFIX="Hello"
+# Generate a strong random secret, for example using Git Bash / WSL:
+#   openssl rand -hex 32
+JWT_SECRET="replace-with-secure-random-hex"
 ```
+
+### Auth & RBAC endpoints
+
+All auth state is stored in Motia State (no in-memory stores).
+
+- **Signup**  
+  - **Method**: `POST`  
+  - **Path**: `/auth/signup`  
+  - **Body**:
+    ```json
+    {
+      "email": "user@example.com",
+      "password": "changeme123",
+      "role": "COMPLAINANT"
+    }
+    ```
+
+- **Login**  
+  - **Method**: `POST`  
+  - **Path**: `/auth/login`  
+  - **Body**:
+    ```json
+    {
+      "email": "user@example.com",
+      "password": "changeme123"
+    }
+    ```
+  - **Response** (shape):
+    ```json
+    {
+      "token": "JWT_TOKEN_HERE",
+      "user": {
+        "id": "user-id",
+        "email": "user@example.com",
+        "role": "COMPLAINANT",
+        "isActive": true,
+        "createdAt": "2025-01-01T00:00:00.000Z"
+      }
+    }
+    ```
+
+- **Protected ADMIN-only example**  
+  - **Method**: `GET`  
+  - **Path**: `/admin/secure`  
+  - **Headers**:
+    ```http
+    Authorization: Bearer <JWT_TOKEN_FROM_LOGIN>
+    ```
+
+- **Protected VOLUNTEER + ADMIN example**  
+  - **Method**: `GET`  
+  - **Path**: `/secure/volunteer-or-admin`  
+  - **Headers**:
+    ```http
+    Authorization: Bearer <JWT_TOKEN_FROM_LOGIN>
+    ```
+
+All flows log structured events via the Motia logger (e.g. `auth.signup.start`, `auth.login.success`, `auth.login.failed`), which are visible in the Motia runtime / Workbench logs.
 
 ## Step Types
 
