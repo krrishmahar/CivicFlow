@@ -1,8 +1,7 @@
-// import crypto from 'node:crypto'
-import crypto from 'crypto'
+import crypto from 'crypto-js';
 
 export const hashPassword = (password: string): string => {
-  return crypto.createHash('sha256').update(password).digest('hex')
+  return crypto.SHA256(password).toString(crypto.enc.Hex);
 }
 
 export const verifyPassword = (password: string, hash: string): boolean => {

@@ -1,9 +1,9 @@
 import type { FlowContext } from 'motia';
 import bcrypt from 'bcryptjs';
 import { BaseError } from '../errors/base.error';
-import type { User } from '../auth/types';
+import type { User } from '../types/types';
 import { findUserByEmail } from './user.service';
-import { signAccessToken } from '../auth/jwt';
+import { signAccessToken } from '../utils/jwt';
 
 type LoginInput = {
   email: string;

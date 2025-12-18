@@ -12,8 +12,6 @@ declare module 'motia' {
   }
 
   interface Handlers {
-    'ProcessGreeting': EventHandler<{ timestamp: string; appName: string; greetingPrefix: string; requestId: string }, never>
-    'HelloAPI': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, { message: string; status: string; appName: string }>, { topic: 'process-greeting'; data: { timestamp: string; appName: string; greetingPrefix: string; requestId: string } }>
     'VolunteerOrAdminEndpoint': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, { message: string; userId: string; email: string; role: string }>, never>
     'AuthSignup': ApiRouteHandler<{ email: string; password: string; role: 'COMPLAINANT' | 'VOLUNTEER' | 'ADMIN' }, ApiResponse<201, { id: string; email: string; role: string; isActive: boolean; createdAt: string }> | ApiResponse<409, { error: unknown }>, never>
     'AuthLogin': ApiRouteHandler<{ email: string; password: string }, ApiResponse<200, { token: string; user: { id: string; email: string; role: string; isActive: boolean; createdAt: string } }> | ApiResponse<401, { error: unknown }> | ApiResponse<403, { error: unknown }>, never>

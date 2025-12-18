@@ -1,6 +1,6 @@
 import type { ApiMiddleware } from 'motia';
 import { ForbiddenError } from '../errors/forbidden.error';
-import type { AuthContext } from '../auth/types';
+import type { AuthContext } from '../types/types';
 
 export const requireRoles = (allowedRoles: string[]): ApiMiddleware => {
   return async (_req, ctx, next) => {
