@@ -4,6 +4,7 @@ import { coreMiddleware } from '../middlewares/core.middleware'
 import { createUser } from '../services/user.service'
 
 const bodySchema = z.object({
+  fullName: z.string().min(2),
   email: z.string().email(),
   password: z.string().min(8),
   role: z.enum(['COMPLAINANT', 'VOLUNTEER', 'ADMIN']),
@@ -21,6 +22,7 @@ export const config: ApiRouteConfig = {
   responseSchema: {
     201: z.object({
       id: z.string(),
+      fullName: z.string().min(2),
       email: z.string().email(),
       role: z.string(),
       isActive: z.boolean(),
@@ -40,6 +42,7 @@ export const handler: Handlers['AuthSignup'] = async (req, ctx) => {
 
   const user = await createUser(
     {
+      fullName: parsed.fullName,
       email: parsed.email,
       password: parsed.password,
       role: parsed.role,
@@ -53,6 +56,7 @@ export const handler: Handlers['AuthSignup'] = async (req, ctx) => {
     status: 201,
     body: {
       id: user.id,
+      fullName: user.fullName,
       email: user.email,
       role: user.role,
       isActive: user.isActive,

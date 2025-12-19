@@ -1,5 +1,5 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts";
-import { useTheme } from "../ThemeProvider";
+// import { useTheme } from "../ThemeProvider";
 
 interface CategoryData {
   name: string;
@@ -12,7 +12,7 @@ interface CategoryPieChartProps {
 }
 
 export function CategoryPieChart({ data }: CategoryPieChartProps) {
-  const { theme } = useTheme();
+  // const { theme } = useTheme();
   
   const total = data.reduce((sum, item) => sum + item.value, 0);
 

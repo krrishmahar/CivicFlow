@@ -23,7 +23,7 @@ declare module 'motia' {
     'DeleteIssue': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, { success: boolean; message: string }> | ApiResponse<403, { error: string }> | ApiResponse<404, { error: string }>, never>
     'CreateIssue': ApiRouteHandler<Record<string, unknown>, ApiResponse<201, { success: boolean; message: string; data: { id: string; title: string; category: 'pothole' | 'garbage' | 'streetlight' | 'water_leak' | 'drainage' | 'road_damage' | 'other'; status: string; createdAt: string } }>, never>
     'VolunteerOrAdminEndpoint': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, { message: string; userId: string; email: string; role: string }>, never>
-    'AuthSignup': ApiRouteHandler<{ email: string; password: string; role: 'COMPLAINANT' | 'VOLUNTEER' | 'ADMIN' }, ApiResponse<201, { id: string; email: string; role: string; isActive: boolean; createdAt: string }> | ApiResponse<409, { error: unknown }>, never>
+    'AuthSignup': ApiRouteHandler<{ fullName: string; email: string; password: string; role: 'COMPLAINANT' | 'VOLUNTEER' | 'ADMIN' }, ApiResponse<201, { id: string; fullName: string; email: string; role: string; isActive: boolean; createdAt: string }> | ApiResponse<409, { error: unknown }>, never>
     'AuthLogin': ApiRouteHandler<{ email: string; password: string }, ApiResponse<200, { token: string; user: { id: string; email: string; role: string; isActive: boolean; createdAt: string } }> | ApiResponse<401, { error: unknown }> | ApiResponse<403, { error: unknown }>, never>
     'AdminOnlyEndpoint': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, { message: string; userId: string; email: string; role: string }>, never>
   }
