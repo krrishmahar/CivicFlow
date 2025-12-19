@@ -1,3 +1,5 @@
+"use client";
+
 const Footer = () => {
   const footerLinks = {
     Product: ['Features', 'Pricing', 'Integrations', 'Changelog'],
