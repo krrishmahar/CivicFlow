@@ -12,6 +12,21 @@ declare module 'motia' {
   }
 
   interface Handlers {
+<<<<<<< Updated upstream
+=======
+    'GetHotspots': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, { success: boolean; data: Array<unknown>; count: number }>, never>
+    'RespondToIssue': ApiRouteHandler<Record<string, unknown>, ApiResponse<201, { success: boolean; message: string; data: { id: string; issueId: string; adminId: string; message: string; createdAt: string } }>, never>
+    'ResolveIssue': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, { success: boolean; message: string; data: unknown }>, never>
+    'GetUserIssues': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, { success: boolean; data: Array<unknown>; count: number }>, never>
+    'GetIssues': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, { success: boolean; data: Array<unknown>; pagination: { limit: number; offset: number; total: number } }>, never>
+    'GetIssueStats': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, { success: boolean; data: { total: number; pending: number; inProgress: number; resolved: number; rejected: number } }>, never>
+    'GetIssueResponses': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, { success: boolean; data: Array<unknown>; count: number }> | ApiResponse<404, { error: string }>, never>
+    'GetIssueById': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, { success: boolean; data: unknown }>, never>
+    'DeleteIssue': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, { success: boolean; message: string }> | ApiResponse<403, { error: string }> | ApiResponse<404, { error: string }>, never>
+    'CreateIssue': ApiRouteHandler<Record<string, unknown>, ApiResponse<201, { success: boolean; message: string; data: { id: string; title: string; category: 'pothole' | 'garbage' | 'streetlight' | 'water_leak' | 'drainage' | 'road_damage' | 'other'; status: string; createdAt: string } }>, never>
+    'ProcessGreeting': EventHandler<{ timestamp: string; appName: string; greetingPrefix: string; requestId: string }, never>
+    'HelloAPI': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, { message: string; status: string; appName: string }>, { topic: 'process-greeting'; data: { timestamp: string; appName: string; greetingPrefix: string; requestId: string } }>
+>>>>>>> Stashed changes
     'VolunteerOrAdminEndpoint': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, { message: string; userId: string; email: string; role: string }>, never>
     'AuthSignup': ApiRouteHandler<{ email: string; password: string; role: 'COMPLAINANT' | 'VOLUNTEER' | 'ADMIN' }, ApiResponse<201, { id: string; email: string; role: string; isActive: boolean; createdAt: string }> | ApiResponse<409, { error: unknown }>, never>
     'AuthLogin': ApiRouteHandler<{ email: string; password: string }, ApiResponse<200, { token: string; user: { id: string; email: string; role: string; isActive: boolean; createdAt: string } }> | ApiResponse<401, { error: unknown }> | ApiResponse<403, { error: unknown }>, never>

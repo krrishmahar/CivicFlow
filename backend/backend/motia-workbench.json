@@ -1,0 +1,36 @@
+[
+  {
+    "id": "hello-world-flow",
+    "config": {
+      "src\\hello\\process-greeting.step.ts": {
+        "x": 490,
+        "y": 40
+      },
+      "src\\hello\\hello-api.step.ts": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  },
+  {
+    "id": "auth-flow",
+    "config": {
+      "src\\auth\\volunteer-admin-api.step.ts": {
+        "x": 0,
+        "y": 0
+      },
+      "src\\auth\\signup-api.step.ts": {
+        "x": 0,
+        "y": 224
+      },
+      "src\\auth\\login-api.step.ts": {
+        "x": 0,
+        "y": 448
+      },
+      "src\\auth\\admin-only-api.step.ts": {
+        "x": 0,
+        "y": 672
+      }
+    }
+  }
+]
